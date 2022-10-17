@@ -3,6 +3,7 @@ from django.http import HttpRequest, HttpResponse
 from django.shortcuts import redirect, render
 from .forms import StoreItemForm
 from stores import models
+from .models import StoreItem
 
 
 def get_store_items(request: HttpRequest) -> HttpResponse:
@@ -25,7 +26,7 @@ def create_store_item(request):
 
 
 def update_store_item(request, item_id):
-    store_item = models.StoreItem.object.git(id=item_id)
+    store_item = StoreItem.objects.get(id=item_id)
     form = StoreItemForm(instance=store_item)
     if request.method == "POST":
         form = StoreItemForm(request.POST, instance=store_item)
@@ -43,6 +44,6 @@ def update_store_item(request, item_id):
 
 
 def delete_store_item(request, item_id):
-    store_item = models.StoreItem.object.git(id=item_id)
+    store_item = StoreItem.objects.get(id=item_id)
     store_item.delete()
     return redirect("store-item-list")
