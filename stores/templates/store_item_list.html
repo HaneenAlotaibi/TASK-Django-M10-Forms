@@ -13,6 +13,9 @@
     <title>Store Items</title>
   </head>
   <body>
+    <button>
+      <a href="{% url 'update_store_item' item_id=store_item.id%}">Edit</a>
+    </button>
     <nav class="navbar navbar-dark bg-dark">
       <div class="container-fluid">
         <a class="navbar-brand">WAM Store</a>
@@ -21,23 +24,25 @@
         </button>
       </div>
     </nav>
-    <div class="container  overflow-hidden">
+    <div class="container overflow-hidden">
       <h1 class="text-center">Store Items</h1>
-      <div class="row g-3 ">
+      <div class="row g-3">
         {% if store_items %} {% for item in store_items %}
         <div class="col-lg-4">
           <div class="card">
             <div class="card-body">
               <img
-              src={{item.image}}
-              class="card-img-top"
-              alt={{item.name}}
+                src="{{item.image}}"
+                class="card-img-top"
+                alt="{{item.name}}"
               />
-              <h5 class="card-title">{{ item.name }}</h3>
-                <h6 class="card-subtitle mb-2 text-muted">Kind: {{ item.kind }}</h6>
-                <p class="card-text">{{ item.description }}</p> 
-              </div>
+              <h5 class="card-title">{{ item.name }}</h5>
+              <h6 class="card-subtitle mb-2 text-muted">
+                Kind: {{ item.kind }}
+              </h6>
+              <p class="card-text">{{ item.description }}</p>
             </div>
+          </div>
         </div>
         {% endfor %} {% else %}
         <p>No store items yet!</p>

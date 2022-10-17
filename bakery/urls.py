@@ -21,5 +21,8 @@ from stores import views as store_views
 urlpatterns = [
     path("admin/", admin.site.urls),
     path("items/", store_views.get_store_items, name="store-item-list"),
-    path('create_store_item',store_views.create_store_item,name='create_store_item')
-]
+    path('create_store_item',store_views.create_store_item,name='create_store_item'),
+    path('update_store_item/<int:item_id>/',store_views.update_store_item,name=' update_store_item'),
+    path('delete_store_item/<int:item_id>/',store_views.delete_store_item,name=' delete_store_item'),
+   
+]   
